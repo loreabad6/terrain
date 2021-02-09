@@ -6,6 +6,7 @@
 #' @param prefix character prefix for output filenames
 #' @param env environment to get SAGA installation,
 #'            can be set with \code{init_saga()}
+#' @param ... ignored, check help page for possible outputs
 #' @param shade boolean, defaults to \code{FALSE}
 #' @param visky boolean, defaults to \code{FALSE}
 #' @param svfct boolean, defaults to \code{FALSE}
@@ -37,7 +38,7 @@ elev_to_lighting = function(elev_sgrd, out_dir,
     if (visky) VISIBLE = here(out_dir, paste0(prefix, "visky", ".sgrd"))
   )
 
-  if (length(module_3_parms[lengths(module_3_parms) > 0]) > 0) {
+  if (length(module_3_params[lengths(module_3_params) > 0]) > 0) {
     params = append(
       list(DEM = elev_sgrd, METHOD = 1, DLEVEL = 3),
       module_3_params
@@ -51,7 +52,7 @@ elev_to_lighting = function(elev_sgrd, out_dir,
     if (negop) NEG = here(out_dir, paste0(prefix, "negop", ".sgrd"))
   )
 
-  if (length(module_5_parms[lengths(module_5_parms) > 0]) > 0) {
+  if (length(module_5_params[lengths(module_5_params) > 0]) > 0) {
     params = append(
       list(DEM = elev_sgrd, METHOD = 0, DLEVEL = 3),
       module_5_params

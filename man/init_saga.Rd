@@ -13,5 +13,6 @@ init_saga(path, modules = NULL)
 }
 \description{
 Initiates the SAGA environment before running any other RSAGA function.
-Will set an "env" object to the R Global Environment.
+Assign the result of this function to an "env" object
+in the R Global Environment.
 }

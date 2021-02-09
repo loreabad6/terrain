@@ -37,7 +37,7 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', env = env, ...,
                                clong = FALSE, cmaxi = FALSE, cmini = FALSE,
                                cplan = FALSE, cprof = FALSE, cvidx = FALSE,
                                ddgrd = FALSE, mbidx = FALSE, mdslp = FALSE,
-                               nrght = FALSE, slhgt = FALSE, slope = FALSE,
+                               nrhgt = FALSE, slhgt = FALSE, slope = FALSE,
                                sthgt = FALSE, textu = FALSE, tpidx = FALSE,
                                tridx = FALSE, vldpt = FALSE, units = "degrees") {
 
@@ -54,14 +54,15 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', env = env, ...,
     if (slope) out.slope = here(out_dir, paste0(prefix, "slope", ".sgrd"))
   )
 
-  if (length(module_0_parms[lengths(module_0_parms) > 0]) > 0) {
+  if (length(module_0_params[lengths(module_0_params) > 0]) > 0) {
     more_params = list(
       in.dem = elev_sgrd,
       unit.slope = units,
-      unit.aspect = units
+      unit.aspect = units,
+      env = env
     )
     params = append(more_params, module_0_params)
-    do.call(rsaga.slope.asp.curv, env = env, parms)
+    do.call(rsaga.slope.asp.curv, params)
   }
 
   # Convergence Index - Module 1
@@ -97,7 +98,7 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', env = env, ...,
       'ta_morphometry', 10,
       list(
         DEM = elev_sgrd,
-        MBI = here(out_dir, paste0(prefix, "mbidx", ".sgrd")),
+        MBI = here(out_dir, paste0(prefix, "mbidx", ".sgrd"))
       ),
       env = env
     )
@@ -107,12 +108,12 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', env = env, ...,
   module_14_params = list(
    if (slhgt) HO = here(out_dir, paste0(prefix, "shlgt", ".sgrd")),
    if (vldpt) HU = here(out_dir, paste0(prefix, "vldpt", ".sgrd")),
-   if (nrhgt) NH = here(out_dir, paste0(prefix, "nrlgt", ".sgrd")),
+   if (nrhgt) NH = here(out_dir, paste0(prefix, "nrhgt", ".sgrd")),
    if (sthgt) SH = here(out_dir, paste0(prefix, "sthgt", ".sgrd")),
    if (mdslp) MS = here(out_dir, paste0(prefix, "mdslp", ".sgrd"))
   )
 
-  if (length(module_14_parms[lengths(module_14_parms) > 0]) > 0) {
+  if (length(module_14_params[lengths(module_14_params) > 0]) > 0) {
       params = append(list(DEM = elev_sgrd), module_14_params)
       rsaga.geoprocessor('ta_morphometry', 14, params, env = env)
   }

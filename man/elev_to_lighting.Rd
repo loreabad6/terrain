@@ -28,6 +28,8 @@ can be created with \code{elev_to_sgrd()}}
 \item{env}{environment to get SAGA installation,
 can be set with \code{init_saga()}}
 
+\item{...}{ignored, check help page for possible outputs}
+
 \item{negop}{boolean, defaults to \code{FALSE}}
 
 \item{posop}{boolean, defaults to \code{FALSE}}

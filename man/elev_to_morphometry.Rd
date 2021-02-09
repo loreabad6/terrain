@@ -22,7 +22,7 @@ elev_to_morphometry(
   ddgrd = FALSE,
   mbidx = FALSE,
   mdslp = FALSE,
-  nrght = FALSE,
+  nrhgt = FALSE,
   slhgt = FALSE,
   slope = FALSE,
   sthgt = FALSE,
@@ -70,6 +70,8 @@ can be set with \code{init_saga()}}
 
 \item{mdslp}{boolean, defaults to \code{FALSE}}
 
+\item{nrhgt}{boolean, defaults to \code{FALSE}}
+
 \item{slhgt}{boolean, defaults to \code{FALSE}}
 
 \item{slope}{boolean, defaults to \code{FALSE}}
@@ -85,8 +87,6 @@ can be set with \code{init_saga()}}
 \item{vldpt}{boolean, defaults to \code{FALSE}}
 
 \item{units}{character, units for slope and aspect output}
-
-\item{nrhgt}{boolean, defaults to \code{FALSE}}
 }
 \description{
 Calculate derivatives from the Morphometry module

@@ -13,6 +13,7 @@
 #' @param prefix character prefix for output filenames
 #' @param env environment to get SAGA installation,
 #'            can be set with \code{init_saga()}
+#' @param ... ignored, check help page for possible outputs
 #' @param chnet boolean, defaults to \code{FALSE}
 #' @param vdcnw boolean, defaults to \code{FALSE}
 #'
@@ -40,7 +41,7 @@ elev_to_channel = function(elev_sgrd, flow_sgrd,
       list(
         ELEVATION = elev_sgrd,
         CHANNELS = here(out_dir, paste0(prefix, "chnet", ".sgrd")),
-        DISTANCE = here(out_dir, paste0(prefix, "vdcnw", ".sgrd")),
+        DISTANCE = here(out_dir, paste0(prefix, "vdcnw", ".sgrd"))
       ),
       env = env
     )
