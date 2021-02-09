@@ -1,0 +1,65 @@
+---
+output: github_document
+always_allow_html: true
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# `terrain`: Utility Functions for Terrain Derivatives Calculations 
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of `terrain` is to have a useful toolbox to calculate terrain derivatives using RSAGA. The package is for my personal use, with selected RSAGA terrain derivatives, and not meant to be comprehensive. Several defaults are hard-coded. 
+
+For the package to work, there should be a local executable of the SAGA software available.
+
+It is not meant for CRAN, and hence most of the functions will write to disk. 
+
+## Installation
+
+You can install the package from GitHub with:
+
+```{r, eval = F}
+remotes::install_github("loreabad6/terrain")
+```
+
+
+## RSAGA selected terrain derivatives
+
+A list of the selected RSAGA terrain derivatives follows below, refer to function code documentation for a short description of each derivative. 
+
+```{r, include = F}
+library(dplyr)
+library(kableExtra)
+list = read.csv(
+  'https://raw.githubusercontent.com/loreabad6/Earthflows_R/master/code_list.csv',
+  sep = ';'
+) %>% mutate(
+  "Function" = case_when(
+    Module == "ta_morphometry" ~ "`elev_to_morphometry()`",
+    Module == "ta_lighting" ~ "`elev_to_lighting()`",
+    Module == "ta_channels" ~ "`elev_to_channels()`",
+    nchar(Code) > 2 ~ "`elev_to_terrain_analysis()`",
+    Module == "ta_hydrology" ~ "`elev_to_hydrology()`"
+  )
+) %>% select(
+    Derivative = Derivative_Name, 
+    `Output Name` = File_Coding_Name, 
+    Function) %>% 
+  arrange(Function)
+```
+
+```{r, echo = F}
+knitr::kable(list[, 1:2], escape = F) %>% 
+  pack_rows(index = setNames(rle(list$Function)[[1]], rle(list$Function)[[2]]))
+```

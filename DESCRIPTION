@@ -1,0 +1,22 @@
+Package: terrain
+Title: Utility Functions for Terrain Derivatives Calculations 
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Lorena",
+           family = "Abad",
+           role = c("aut", "cre"),
+           email = "lore-abad6@gmail.com",
+           comment = c(ORCID = "0000-0003-0554-734X"))
+Description: Utility functions to calculate terrain derivatives from elevation 
+              raster data using 'RSAGA'.
+License: MIT + file LICENSE
+Depends: 
+    R (>= 3.6)
+Imports:
+    here,
+    raster,
+    RSAGA
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
