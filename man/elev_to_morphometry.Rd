@@ -46,48 +46,139 @@ can be set with \code{init_saga()}}
 
 \item{...}{ignored, check help page for possible outputs}
 
-\item{aspect}{boolean, defaults to \code{FALSE}}
+\item{aspect}{Aspect:
+the compass direction that a slope faces.
+Boolean, defaults to \code{FALSE}}
 
-\item{ccros}{boolean, defaults to \code{FALSE}}
+\item{ccros}{Crossectional Curvature:
+Boolean, defaults to \code{FALSE}}
 
-\item{cgene}{boolean, defaults to \code{FALSE}}
+\item{cgene}{Curvature (General Curvature):
+Boolean, defaults to \code{FALSE}}
 
-\item{clong}{boolean, defaults to \code{FALSE}}
+\item{clong}{Longitudinal Curvature:
+Boolean, defaults to \code{FALSE}}
 
-\item{cmaxi}{boolean, defaults to \code{FALSE}}
+\item{cmaxi}{Maximum Curvature:
+Boolean, defaults to \code{FALSE}}
 
-\item{cmini}{boolean, defaults to \code{FALSE}}
+\item{cmini}{Minimum Curvature:
+Boolean, defaults to \code{FALSE}}
 
-\item{cplan}{boolean, defaults to \code{FALSE}}
+\item{cplan}{Plan Curvature:
+Boolean, defaults to \code{FALSE}}
 
-\item{cprof}{boolean, defaults to \code{FALSE}}
+\item{cprof}{Profile Curvature:
+Surface curvature in the direction of gradient)
+Boolean, defaults to \code{FALSE}}
 
-\item{cvidx}{boolean, defaults to \code{FALSE}}
+\item{cvidx}{Convergence Index:
+Calculates an index of convergence/divergence regarding to
+overland flow. By its meaning it is similar to plan or
+horizontal curvature, but gives much smoother results.
+The calculation uses the aspects of surrounding cells, i.e.
+it looks to which degree surrounding cells point to the center
+cell. The result is given as percentages, negative values
+correspond to convergent, positive to divergent flow
+conditions. Minus 100 would be like a peak of a cone (a),
+plus 100 a pit (c), and 0 an even slope (b).
+Boolean, defaults to \code{FALSE}}
 
-\item{ddgrd}{boolean, defaults to \code{FALSE}}
+\item{ddgrd}{Downslope distance gradient:
+describes wet areas by assuming water accumulation in flat
+areas is due to upslope, local and downslope topography.
+It is a quantitative estimation of the hydraulic gradient.
+Obtained by calculating the downhill distance when water loses
+a determined quantity of energy from precipitation.
+Boolean, defaults to \code{FALSE}}
 
-\item{mbidx}{boolean, defaults to \code{FALSE}}
+\item{mbidx}{Mass Balance Index:
+Negative MBI values represent areas of net deposition such as
+depressions and floodplains; positive MBI values represent areas
+of net erosion such as hillslopes, and MBI values close to zero
+indicate areas where there is a balance between erosion and
+deposition such as low slopes and plain areas. High positive
+MBI values occur at convex terrain forms, like upper slopes and
+crests, while lower MBI values are associated with valley areas
+and concave zones at lower slopes. Balanced MBI values close to
+zero can be found in midslope zones and mean a location of no
+net loss or net accumulation of material.
+Boolean, defaults to \code{FALSE}}
 
-\item{mdslp}{boolean, defaults to \code{FALSE}}
+\item{mdslp}{Midslope Position:
+Boolean, defaults to \code{FALSE}}
 
-\item{nrhgt}{boolean, defaults to \code{FALSE}}
+\item{nrhgt}{Normalized Height:
+Boolean, defaults to \code{FALSE}}
 
-\item{slhgt}{boolean, defaults to \code{FALSE}}
+\item{slhgt}{Slope Height:
+Boolean, defaults to \code{FALSE}}
 
-\item{slope}{boolean, defaults to \code{FALSE}}
+\item{slope}{Slope gradient:
+Reflects the maximal rate of change of elevation values.
+Boolean, defaults to \code{FALSE}}
 
-\item{sthgt}{boolean, defaults to \code{FALSE}}
+\item{sthgt}{Standardized Height:
+Boolean, defaults to \code{FALSE}}
 
-\item{textu}{boolean, defaults to \code{FALSE}}
+\item{textu}{Texture:
+This parameter emphasizes fine versus coarse expression of
+topographic spacing, or “grain”… Texture is calculated by
+extracting grid cells (here, informally, “pits” and “peaks”)
+that outline the distribution of valleys and ridges. It is
+defined by both relief (feature frequency) and spacing in the
+horizontal. Each grid cell value represents the relative
+frequency (in percent) of the number of pits and peaks within
+a radius of ten cells (Iwahashi and Pike, 2007. pp.412-413).
+It should be noted that it is not clear that the relative
+frequency is actually a percentage. According to Iwahashi and
+Pike (2007, p.30), To ensure statistically robust classes,
+thresholds for subdividing the images are arbitrarily set
+at mean values of frequency distributions of the input
+variables.
+Boolean, defaults to \code{FALSE}}
 
-\item{tpidx}{boolean, defaults to \code{FALSE}}
+\item{tpidx}{Topographic Position Index:
+Measures the relative topographic position of the central point
+as the difference between the elevation at this point and the
+mean elevation within a predetermined neighbourhood. Using TPI,
+landscapes can be classified in slope position classes. TPI is
+only one of a vast array of morphometric properties based on
+neighbouring areas that can be useful in topographic and DEM
+analysis. Used for roughness determination. The lower the
+numbers are the lower areas in the landscape. The higher
+numbers are the higher areas in the landscape.
+Boolean, defaults to \code{FALSE}}
 
-\item{tridx}{boolean, defaults to \code{FALSE}}
+\item{tridx}{Terrain Ruggedness Index:
+Quantitative measure of topographic heterogeneity by
+calculating the sum change in elevation between a grid cell
+and its eight neighbor grid cells. This tool works with
+absolute values by squaring the differences between the target
+and neighbor cells, then taking the square root. Concave and
+convex shape areas could have similar values. The value of this
+metric will vary as a function of the size and complexity of
+the terrain used in the analysis. The closer you are to 0 the
+less rugged the terrain likely is. The bigger the number is,
+e.g. 105, then the terrain is likely to be more rugged.
+Boolean, defaults to \code{FALSE}}
 
-\item{vldpt}{boolean, defaults to \code{FALSE}}
+\item{vldpt}{Valley Depth:
+Calculated as difference between the elevation and an
+interpolated ridge level. Ridge level interpolation uses the
+algorithm implemented in the 'Vertical Distance to Channel
+Network' tool.
+Boolean, defaults to \code{FALSE}}
 
 \item{units}{character, units for slope and aspect output}
 }
 \description{
 Calculate derivatives from the Morphometry module
+}
+\references{
+Olaya, V. (2009). Basic land-surface parameters.
+In Developments in Soil Science (Vol. 33, Issue C).
+Elsevier Ltd. https://doi.org/10.1016/S0166-2481(08)00006-8
+
+https://sourceforge.net/p/saga-gis/wiki/ta_morphometry_1/
 }

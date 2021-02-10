@@ -29,15 +29,50 @@ can be set with \code{init_saga()}}
 
 \item{...}{ignored, check help page for possible outputs}
 
-\item{lsfct}{boolean, defaults to \code{FALSE}}
+\item{lsfct}{LS Factor:
+L is the slope length factor, representing the effect of slope
+length on erosion. It is the ratio of soil loss from the field
+slope length to that from a 72.6-foot (22.1-meter) length on
+the same soil type and gradient. Slope length is the distance
+from the origin of overland flow along its flow path to the
+location of either concentrated flow or deposition. S is the
+slope steepness. Represents the effect of slope steepness on
+erosion. Soil loss increases more rapidly with slope steepness
+than it does with slope length. L factor and S factor are
+usually considered together. LS factors = the slope length
+factor L computes the effect of slope length on erosion and
+the slope steepness factor S computes the effect of slope
+steepness on erosion. Values of both L and S equal 1 for the
+unit plot conditions of 72.6 ft length and 9 percent steepness.
+Values of L and S are relative and represent how erodible the
+particular slope length and steepness is relative to the 72.6 ft
+long, 9\% steep unit plot. Thus some values of L and S are less
+than 1 and some values are greater than 1.
+Boolean, defaults to \code{FALSE}}
 
-\item{flow}{boolean, defaults to \code{FALSE}}
-
-\item{spcar}{boolean, defaults to \code{FALSE} When \code{TRUE},
+\item{spcar, flow}{Specific Catchment Area and Flow Accumulation:
+SCA is A parameter of the tendency to receive water.
+The contributing area (also known as basin area,
+upslope area, or flow accumulation) deter-mines the size
+of the upslope area (derived by the number of cells)
+draining into a cell.
+Boolean, defaults to \code{FALSE} When \code{TRUE},
 then \code{flow} should also be \code{TRUE}}
 
-\item{twidx}{boolean, defaults to \code{FALSE}}
+\item{twidx}{Topographic Wetness Index:
+Describes the tendency of an area to accumulate water.
+Areas prone to water accumulation (large contributing drainage
+areas) and characterized by low slope angle will be linked to
+high TWI values. On the other hand, well-drained dry areas
+(steep slopes) are associated to low TWI values.
+Boolean, defaults to \code{FALSE}}
 }
 \description{
 Calculate derivatives from the Terrain Analysis module
+}
+\references{
+Mattivi, P., Franci, F., Lambertini, A. et al. TWI computation:
+a comparison of different open source GISs.
+Open geospatial data, softw. stand. 4, 6 (2019).
+https://doi.org/10.1186/s40965-019-0066-y
 }

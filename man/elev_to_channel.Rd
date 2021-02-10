@@ -19,7 +19,8 @@ elev_to_channel(
 \item{elev_sgrd}{input, elevation raster data in SAGA format,
 can be created with \code{elev_to_sgrd()}}
 
-\item{flow_sgrd}{input, can be generated with \code{elev_to_terrain_analysis()}}
+\item{flow_sgrd}{input, can be generated with
+\code{elev_to_terrain_analysis()}}
 
 \item{out_dir}{output directory}
 
@@ -30,9 +31,14 @@ can be set with \code{init_saga()}}
 
 \item{...}{ignored, check help page for possible outputs}
 
-\item{chnet}{boolean, defaults to \code{FALSE}}
+\item{chnet}{Channel Network:
+If a cell is part of a channel its value equals the channel
+order. Otherwise the cell is marked as no-data.
+Boolean, defaults to \code{FALSE}}
 
-\item{vdcnw}{boolean, defaults to \code{FALSE}}
+\item{vdcnw}{Vertical Distance to Channel Network:
+Altitude above the channel network.
+Boolean, defaults to \code{FALSE}}
 }
 \description{
 The main goal of this function is to calculate the

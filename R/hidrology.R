@@ -14,10 +14,34 @@
 #' @param env environment to get SAGA installation,
 #'            can be set with \code{init_saga()}
 #' @param ... ignored, check help page for possible outputs
-#' @param mridx boolean, defaults to \code{FALSE}
-#' @param sagaw boolean, defaults to \code{FALSE}
-#' @param sllgt boolean, defaults to \code{FALSE}
-#' @param spidx boolean, defaults to \code{FALSE}
+#' @param mridx Melton Ruggedness Index:
+#'              Simple flow accumulation related index, calculated as
+#'              difference between maximum and minimum elevation in catchment
+#'              area divided by square root of catchment area size. The
+#'              calculation is performed for each grid cell, therefore minimum
+#'              elevation is same as elevation at cell’s position. Due to the
+#'              discrete character of a single maximum elevation, flow
+#'              calculation is simply done with Deterministic 8.
+#'              Boolean,defaults to \code{FALSE}
+#' @param sagaw SAGA Wetness Index:
+#'              Similar to the ‘Topographic Wetness Index’ (TWI),
+#'              see \code{eval_to_terrain_analysis} but based on a modified
+#'              catchment area calculation (‘Modified Catchment Area’),
+#'              which does not think of the flow as very thin film. It predicts
+#'              for cells situated in valley floors with a small vertical
+#'              distance to a channel a more realistic, higher potential
+#'              soil moisture compared to the standard TWI calculation.
+#'              Boolean, defaults to \code{FALSE}
+#' @param sllgt Slope Length:
+#'              Measurement of the distance from the origin of overland flow
+#'              along its flow path to the location of either concentrated flow
+#'              or deposition.
+#'              Boolean, defaults to \code{FALSE}
+#' @param spidx Stream Power Index:
+#'              Measure of the erosive power of flowing water. Calculated based
+#'              upon slope and contributing area. SPI approximates locations
+#'              where gullies might be more likely to form on the landscape.
+#'              Boolean, defaults to \code{FALSE}
 #'
 #' @importFrom here here
 #' @importFrom RSAGA rsaga.geoprocessor
