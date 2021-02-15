@@ -34,7 +34,7 @@ can be set with \code{init_saga()}}
 \item{chnet}{Channel Network:
 If a cell is part of a channel its value equals the channel
 order. Otherwise the cell is marked as no-data.
-Boolean, defaults to \code{FALSE}}
+Boolean, defaults to \code{TRUE}}
 
 \item{vdcnw}{Vertical Distance to Channel Network:
 Altitude above the channel network.

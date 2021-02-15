@@ -69,7 +69,7 @@ Boolean, defaults to \code{FALSE}}
 Boolean, defaults to \code{FALSE}}
 
 \item{cprof}{Profile Curvature:
-Surface curvature in the direction of gradient)
+Surface curvature in the direction of gradient
 Boolean, defaults to \code{FALSE}}
 
 \item{cvidx}{Convergence Index:

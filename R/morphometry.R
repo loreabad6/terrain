@@ -23,7 +23,7 @@
 #' @param cplan Plan Curvature:
 #'              Boolean, defaults to \code{FALSE}
 #' @param cprof Profile Curvature:
-#'              Surface curvature in the direction of gradient)
+#'              Surface curvature in the direction of gradient
 #'              Boolean, defaults to \code{FALSE}
 #' @param cvidx Convergence Index:
 #'              Calculates an index of convergence/divergence regarding to

@@ -18,7 +18,7 @@
 #' @param chnet Channel Network:
 #'              If a cell is part of a channel its value equals the channel
 #'              order. Otherwise the cell is marked as no-data.
-#'              Boolean, defaults to \code{FALSE}
+#'              Boolean, defaults to \code{TRUE}
 #' @param vdcnw Vertical Distance to Channel Network:
 #'              Altitude above the channel network.
 #'              Boolean, defaults to \code{FALSE}

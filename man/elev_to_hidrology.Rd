@@ -23,11 +23,11 @@ elev_to_hidrology(
 can be created with \code{elev_to_sgrd()}}
 
 \item{slope_sgrd}{optional input, slope raster data in SAGA format,
-can be created with \code{elev_to_morphometry(slope = T)}}
+can be created with \code{elev_to_morphometry(slope = TRUE)}}
 
 \item{spcar_sgrd}{optional input, specific catchment area raster data in
 SAGA format, can be created with
-\code{elev_to_terrain_analysis(flow = TRUE, spcar = T)}
+\code{elev_to_terrain_analysis(flow = TRUE, spcar = TRUE)}
 Both options are needed since this is computed from the
 Flow Accumulation (One Step) module}
 
@@ -70,6 +70,7 @@ Boolean, defaults to \code{FALSE}}
 Measure of the erosive power of flowing water. Calculated based
 upon slope and contributing area. SPI approximates locations
 where gullies might be more likely to form on the landscape.
+Needs \code{slope_sgrd} and \code{spcar_sgrd} parameters.
 Boolean, defaults to \code{FALSE}}
 }
 \description{
