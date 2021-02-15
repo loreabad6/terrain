@@ -13,7 +13,7 @@ elev_to_sgrd = function(elev_filename, out_filename = NA,
   # Load elevation data into R with raster
   elev = raster(elev_filename)
   # If crs info is given, add information to elevation data
-  if (!is.na(crs_elev)) crs(elev) = crs_elev else crs(elev) = crs(elev)
+  # if (!is.na(crs_elev)) crs(elev) = crs_elev else crs(elev) = crs(elev)
   # If crs is not set but elevation data has no crs, create a warning
   if (is.na(crs(elev))) warning("Input data has no CRS.", call. = FALSE)
   # Set the output filename if not given. Defaults to the same path and name of input data
