@@ -12,7 +12,7 @@
 #'                   \code{elev_to_terrain_analysis()}
 #' @param out_dir output directory
 #' @param prefix character prefix for output filenames
-#' @param env environment to get SAGA installation,
+#' @param envir environment to get SAGA installation,
 #'            can be set with \code{init_saga()}
 #' @param ... ignored, check help page for possible outputs
 #' @param chnet Channel Network:
@@ -27,7 +27,7 @@
 #' @importFrom RSAGA rsaga.geoprocessor
 #' @export
 elev_to_channel = function(elev_sgrd, flow_sgrd,
-                           out_dir, prefix = '', env = env, ...,
+                           out_dir, prefix = '', envir, ...,
                            chnet = TRUE, vdcnw = FALSE) {
   if (!chnet) stop("chnet is a fix output from this function", call. = FALSE)
   rsaga.geoprocessor(
@@ -38,7 +38,7 @@ elev_to_channel = function(elev_sgrd, flow_sgrd,
       CHNLNTWRK = here(out_dir, paste0(prefix, "chnet", ".sgrd")),
       INIT_VALUE = 1000000
     ),
-    env = env
+    env = envir
   )
 
   if (vdcnw) {
@@ -49,7 +49,7 @@ elev_to_channel = function(elev_sgrd, flow_sgrd,
         CHANNELS = here(out_dir, paste0(prefix, "chnet", ".sgrd")),
         DISTANCE = here(out_dir, paste0(prefix, "vdcnw", ".sgrd"))
       ),
-      env = env
+      env = envir
     )
   }
 }

@@ -4,7 +4,7 @@
 #'                  can be created with \code{elev_to_sgrd()}
 #' @param out_dir output directory
 #' @param prefix character prefix for output filenames
-#' @param env environment to get SAGA installation,
+#' @param envir environment to get SAGA installation,
 #'            can be set with \code{init_saga()}
 #' @param ... ignored, check help page for possible outputs
 #' @param aspect Aspect:
@@ -121,7 +121,7 @@
 #' @importFrom here here
 #' @importFrom RSAGA rsaga.slope.asp.curv rsaga.geoprocessor
 #' @export
-elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', env = env, ...,
+elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', envir, ...,
                                aspect = FALSE, ccros = FALSE, cgene = FALSE,
                                clong = FALSE, cmaxi = FALSE, cmini = FALSE,
                                cplan = FALSE, cprof = FALSE, cvidx = FALSE,
@@ -132,15 +132,15 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', env = env, ...,
 
   # Slope, aspect, curvature - Module 0
   module_0_params = list(
-    if (aspect) out.aspect = here(out_dir, paste0(prefix, "aspect", ".sgrd")),
-    if (ccros) out.ccros = here(out_dir, paste0(prefix, "ccros", ".sgrd")),
-    if (cgene) out.cgene = here(out_dir, paste0(prefix, "cgene", ".sgrd")),
-    if (clong) out.clong = here(out_dir, paste0(prefix, "clong", ".sgrd")),
-    if (cmaxi) out.cmaxi = here(out_dir, paste0(prefix, "cmaxi", ".sgrd")),
-    if (cmini) out.cmini = here(out_dir, paste0(prefix, "cmini", ".sgrd")),
-    if (cplan) out.cplan = here(out_dir, paste0(prefix, "cplan", ".sgrd")),
-    if (cprof) out.cprof = here(out_dir, paste0(prefix, "cprof", ".sgrd")),
-    if (slope) out.slope = here(out_dir, paste0(prefix, "slope", ".sgrd"))
+    if (aspect) out.aspect = here(out_dir, paste0(prefix, "aspect.sgrd")),
+    if (ccros) out.ccros = here(out_dir, paste0(prefix, "ccros.sgrd")),
+    if (cgene) out.cgene = here(out_dir, paste0(prefix, "cgene.sgrd")),
+    if (clong) out.clong = here(out_dir, paste0(prefix, "clong.sgrd")),
+    if (cmaxi) out.cmaxi = here(out_dir, paste0(prefix, "cmaxi.sgrd")),
+    if (cmini) out.cmini = here(out_dir, paste0(prefix, "cmini.sgrd")),
+    if (cplan) out.cplan = here(out_dir, paste0(prefix, "cplan.sgrd")),
+    if (cprof) out.cprof = here(out_dir, paste0(prefix, "cprof.sgrd")),
+    if (slope) out.slope = here(out_dir, paste0(prefix, "slope.sgrd"))
   )
 
   if (length(module_0_params[lengths(module_0_params) > 0]) > 0) {
@@ -148,7 +148,7 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', env = env, ...,
       in.dem = elev_sgrd,
       unit.slope = units,
       unit.aspect = units,
-      env = env
+      env = envir
     )
     params = append(more_params, module_0_params)
     do.call(rsaga.slope.asp.curv, params)
@@ -160,11 +160,11 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', env = env, ...,
       'ta_morphometry', 1,
       list(
         ELEVATION = elev_sgrd,
-        RESULT = here(out_dir, paste0(prefix, "cvidx", ".sgrd")),
+        RESULT = here(out_dir, paste0(prefix, "cvidx.sgrd")),
         METHOD = 1,
         NEIGHBOURS = 1
       ),
-      env = env
+      env = envir
     )
   }
 
@@ -174,10 +174,10 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', env = env, ...,
       'ta_morphometry', 9,
       list(
         DEM = elev_sgrd,
-        GRADIENT = here(out_dir, paste0(prefix, "ddgrd", ".sgrd")),
+        GRADIENT = here(out_dir, paste0(prefix, "ddgrd.sgrd")),
         OUTPUT = 2
       ),
-      env = env
+      env = envir
     )
   }
 
@@ -187,24 +187,24 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', env = env, ...,
       'ta_morphometry', 10,
       list(
         DEM = elev_sgrd,
-        MBI = here(out_dir, paste0(prefix, "mbidx", ".sgrd"))
+        MBI = here(out_dir, paste0(prefix, "mbidx.sgrd"))
       ),
-      env = env
+      env = envir
     )
   }
 
   # Relative Heights and Slope Positions - Module 14
   module_14_params = list(
-   if (slhgt) HO = here(out_dir, paste0(prefix, "shlgt", ".sgrd")),
-   if (vldpt) HU = here(out_dir, paste0(prefix, "vldpt", ".sgrd")),
-   if (nrhgt) NH = here(out_dir, paste0(prefix, "nrhgt", ".sgrd")),
-   if (sthgt) SH = here(out_dir, paste0(prefix, "sthgt", ".sgrd")),
-   if (mdslp) MS = here(out_dir, paste0(prefix, "mdslp", ".sgrd"))
+   if (slhgt) HO = here(out_dir, paste0(prefix, "shlgt.sgrd")),
+   if (vldpt) HU = here(out_dir, paste0(prefix, "vldpt.sgrd")),
+   if (nrhgt) NH = here(out_dir, paste0(prefix, "nrhgt.sgrd")),
+   if (sthgt) SH = here(out_dir, paste0(prefix, "sthgt.sgrd")),
+   if (mdslp) MS = here(out_dir, paste0(prefix, "mdslp.sgrd"))
   )
 
   if (length(module_14_params[lengths(module_14_params) > 0]) > 0) {
       params = append(list(DEM = elev_sgrd), module_14_params)
-      rsaga.geoprocessor('ta_morphometry', 14, params, env = env)
+      rsaga.geoprocessor('ta_morphometry', 14, params, env = envir)
   }
 
   # Terrain Ruggedness Index (TRI) - Module 16
@@ -213,9 +213,9 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', env = env, ...,
       'ta_morphometry', 16,
       list(
         DEM = elev_sgrd,
-        TRI = here(out_dir, paste0(prefix, "tridx", ".sgrd"))
+        TRI = here(out_dir, paste0(prefix, "tridx.sgrd"))
       ),
-      env = env
+      env = envir
     )
   }
 
@@ -225,11 +225,11 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', env = env, ...,
       'ta_morphometry', 18,
       list(
         DEM = elev_sgrd,
-        TPI = here(out_dir, paste0(prefix, "tpidx", ".sgrd")),
+        TPI = here(out_dir, paste0(prefix, "tpidx.sgrd")),
         RADIUS_MIN=0,
         RADIUS_MAX=20
       ),
-      env = env
+      env = envir
     )
   }
 
@@ -239,9 +239,9 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', env = env, ...,
       'ta_morphometry', 20,
       list(
         DEM = elev_sgrd,
-        TEXTURE = here(out_dir, paste0(prefix, "textu", ".sgrd"))
+        TEXTURE = here(out_dir, paste0(prefix, "textu.sgrd"))
       ),
-      env = env
+      env = envir
     )
   }
 }

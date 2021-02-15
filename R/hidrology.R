@@ -11,7 +11,7 @@
 #'                  Flow Accumulation (One Step) module
 #' @param out_dir output directory
 #' @param prefix character prefix for output filenames
-#' @param env environment to get SAGA installation,
+#' @param envir environment to get SAGA installation,
 #'            can be set with \code{init_saga()}
 #' @param ... ignored, check help page for possible outputs
 #' @param mridx Melton Ruggedness Index:
@@ -49,7 +49,7 @@
 #' @export
 elev_to_hidrology = function(elev_sgrd = NULL, slope_sgrd = NULL,
                              spcar_sgrd = NULL, out_dir, prefix = '',
-                             env = env, ...,
+                             envir, ...,
                              mridx = FALSE, sagaw = FALSE,
                              sllgt = FALSE, spidx = FALSE) {
 
@@ -67,7 +67,7 @@ elev_to_hidrology = function(elev_sgrd = NULL, slope_sgrd = NULL,
         DEM = elev_sgrd,
         LENGTH = here(out_dir, paste0(prefix, "sllgt", ".sgrd"))
       ),
-      env = env
+      env = envir
     )
   }
 
@@ -85,7 +85,7 @@ elev_to_hidrology = function(elev_sgrd = NULL, slope_sgrd = NULL,
         DEM = elev_sgrd,
         MRN = here(out_dir, paste0(prefix, "sagaw", ".sgrd"))
       ),
-      env = env
+      env = envir
     )
   }
 
@@ -104,7 +104,7 @@ elev_to_hidrology = function(elev_sgrd = NULL, slope_sgrd = NULL,
         AREA = spcar_sgrd,
         SPI = here(out_dir, paste0(prefix, "spidx", ".sgrd"))
       ),
-      env = env
+      env = envir
     )
   }
 
@@ -122,7 +122,7 @@ elev_to_hidrology = function(elev_sgrd = NULL, slope_sgrd = NULL,
         DEM = elev_sgrd,
         MRN = here(out_dir, paste0(prefix, "mridx", ".sgrd"))
       ),
-      env = env
+      env = envir
     )
   }
 }

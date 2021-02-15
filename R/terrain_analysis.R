@@ -4,7 +4,7 @@
 #'                  can be created with \code{elev_to_sgrd()}
 #' @param out_dir output directory
 #' @param prefix character prefix for output filenames
-#' @param env environment to get SAGA installation,
+#' @param envir environment to get SAGA installation,
 #'            can be set with \code{init_saga()}
 #' @param ... ignored, check help page for possible outputs
 #' @param lsfct LS Factor:
@@ -52,7 +52,7 @@
 #' @importFrom RSAGA rsaga.geoprocessor
 #' @export
 elev_to_terrain_analysis = function(elev_sgrd, out_dir,
-                                    prefix = '', env = env, ...,
+                                    prefix = '', envir, ...,
                                     lsfct = FALSE, flow = FALSE,
                                     spcar = FALSE, twidx = FALSE) {
   # LS Factor (One Step)
@@ -67,7 +67,7 @@ elev_to_terrain_analysis = function(elev_sgrd, out_dir,
         PREPROCESSING = 2,
         MINSLOPE = 0.0001
       ),
-      env = env
+      env = envir
     )
   }
 
@@ -81,7 +81,7 @@ elev_to_terrain_analysis = function(elev_sgrd, out_dir,
         TWI = here(out_dir, paste0(prefix, "twidx", ".sgrd")),
         FLOW_METHOD = 0
       ),
-      env = env
+      env = envir
     )
   }
 
@@ -98,7 +98,7 @@ elev_to_terrain_analysis = function(elev_sgrd, out_dir,
         PREPROCESSING = 0,
         FLOW_ROUTING = 0
       ),
-      env = env
+      env = envir
     )
   }
 }

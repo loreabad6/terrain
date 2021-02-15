@@ -4,7 +4,7 @@
 #'                  can be created with \code{elev_to_sgrd()}
 #' @param out_dir output directory
 #' @param prefix character prefix for output filenames
-#' @param env environment to get SAGA installation,
+#' @param envir environment to get SAGA installation,
 #'            can be set with \code{init_saga()}
 #' @param ... ignored, check help page for possible outputs
 #' @param shade Hillshade:
@@ -50,7 +50,7 @@
 #' @importFrom RSAGA rsaga.geoprocessor
 #' @export
 elev_to_lighting = function(elev_sgrd, out_dir,
-                            prefix = '', env = env, ...,
+                            prefix = '', envir, ...,
                             negop = FALSE, posop = FALSE, shade = FALSE,
                             svfct = FALSE, visky = FALSE) {
   # Hillshade - Module 0
@@ -61,7 +61,7 @@ elev_to_lighting = function(elev_sgrd, out_dir,
         ELEVATION = elev_sgrd,
         SHADE = here(out_dir, paste0(prefix, "shade", ".sgrd"))
       ),
-      env = env
+      env = envir
     )
   }
 
@@ -76,7 +76,7 @@ elev_to_lighting = function(elev_sgrd, out_dir,
       list(DEM = elev_sgrd, METHOD = 1, DLEVEL = 3),
       module_3_params
     )
-    rsaga.geoprocessor('ta_lighting', 3, params, env = env)
+    rsaga.geoprocessor('ta_lighting', 3, params, env = envir)
   }
 
   # Topographic Openness - Module 5
@@ -90,6 +90,6 @@ elev_to_lighting = function(elev_sgrd, out_dir,
       list(DEM = elev_sgrd, METHOD = 0, DLEVEL = 3),
       module_5_params
     )
-    rsaga.geoprocessor('ta_lighting', 5, params, env = env)
+    rsaga.geoprocessor('ta_lighting', 5, params, env = envir)
   }
 }

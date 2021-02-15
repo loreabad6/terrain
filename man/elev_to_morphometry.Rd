@@ -8,7 +8,7 @@ elev_to_morphometry(
   elev_sgrd,
   out_dir,
   prefix = "",
-  env = env,
+  envir,
   ...,
   aspect = FALSE,
   ccros = FALSE,
@@ -41,7 +41,7 @@ can be created with \code{elev_to_sgrd()}}
 
 \item{prefix}{character prefix for output filenames}
 
-\item{env}{environment to get SAGA installation,
+\item{envir}{environment to get SAGA installation,
 can be set with \code{init_saga()}}
 
 \item{...}{ignored, check help page for possible outputs}

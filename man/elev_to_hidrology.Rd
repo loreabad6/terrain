@@ -10,7 +10,7 @@ elev_to_hidrology(
   spcar_sgrd = NULL,
   out_dir,
   prefix = "",
-  env = env,
+  envir,
   ...,
   mridx = FALSE,
   sagaw = FALSE,
@@ -35,7 +35,7 @@ Flow Accumulation (One Step) module}
 
 \item{prefix}{character prefix for output filenames}
 
-\item{env}{environment to get SAGA installation,
+\item{envir}{environment to get SAGA installation,
 can be set with \code{init_saga()}}
 
 \item{...}{ignored, check help page for possible outputs}
