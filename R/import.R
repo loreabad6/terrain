@@ -5,7 +5,7 @@
 #' @param crs if elevation raster has no CRS, specify which to use, in proj format
 #' @param overwrite boolean, default to TRUE, should the output file be overwritten?
 #'
-#' @importFrom raster raster crs<- writeRaster
+#' @importFrom raster raster crs<- crs writeRaster
 #'
 #' @export
 elev_to_sgrd = function(elev_filename, out_filename = NA, crs = NULL, overwrite = TRUE) {
