@@ -4,14 +4,14 @@
 \alias{elev_to_sgrd}
 \title{Convert elevation data into SAGA format}
 \usage{
-elev_to_sgrd(elev_filename, out_filename = NA, crs = NULL, overwrite = TRUE)
+elev_to_sgrd(elev_filename, out_filename = NA, crs_elev = NA, overwrite = TRUE)
 }
 \arguments{
 \item{elev_filename}{filename in disk of the elevation raster data}
 
 \item{out_filename}{output filename, defaults to \code{[elev_filename].sgrd}}
 
-\item{crs}{if elevation raster has no CRS, specify which to use, in proj format}
+\item{crs_elev}{if elevation raster has no CRS, specify which to use, in proj format}
 
 \item{overwrite}{boolean, default to TRUE, should the output file be overwritten?}
 }
