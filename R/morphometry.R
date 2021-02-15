@@ -131,19 +131,21 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', envir, ...,
                                tridx = FALSE, vldpt = FALSE, units = "degrees") {
 
   # Slope, aspect, curvature - Module 0
-  module_0_params = list(
-    if (aspect) out.aspect = here(out_dir, paste0(prefix, "aspect.sgrd")),
-    if (ccros) out.ccros = here(out_dir, paste0(prefix, "ccros.sgrd")),
-    if (cgene) out.cgene = here(out_dir, paste0(prefix, "cgene.sgrd")),
-    if (clong) out.clong = here(out_dir, paste0(prefix, "clong.sgrd")),
-    if (cmaxi) out.cmaxi = here(out_dir, paste0(prefix, "cmaxi.sgrd")),
-    if (cmini) out.cmini = here(out_dir, paste0(prefix, "cmini.sgrd")),
-    if (cplan) out.cplan = here(out_dir, paste0(prefix, "cplan.sgrd")),
-    if (cprof) out.cprof = here(out_dir, paste0(prefix, "cprof.sgrd")),
-    if (slope) out.slope = here(out_dir, paste0(prefix, "slope.sgrd"))
+  module_0_params_set = list(
+    out.aspect = if (aspect) here(out_dir, paste0(prefix, "aspect.sgrd")),
+    out.ccros = if (ccros) here(out_dir, paste0(prefix, "ccros.sgrd")),
+    out.cgene = if (cgene) here(out_dir, paste0(prefix, "cgene.sgrd")),
+    out.clong = if (clong) here(out_dir, paste0(prefix, "clong.sgrd")),
+    out.cmaxi = if (cmaxi) here(out_dir, paste0(prefix, "cmaxi.sgrd")),
+    out.cmini = if (cmini) here(out_dir, paste0(prefix, "cmini.sgrd")),
+    out.cplan = if (cplan) here(out_dir, paste0(prefix, "cplan.sgrd")),
+    out.cprof = if (cprof) here(out_dir, paste0(prefix, "cprof.sgrd")),
+    out.slope = if (slope) here(out_dir, paste0(prefix, "slope.sgrd"))
   )
 
-  if (length(module_0_params[lengths(module_0_params) > 0]) > 0) {
+  module_0_params = module_0_params_set[lengths(module_0_params_set) > 0]
+
+  if (length(module_0_params) > 0) {
     more_params = list(
       in.dem = elev_sgrd,
       unit.slope = units,
@@ -194,15 +196,17 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', envir, ...,
   }
 
   # Relative Heights and Slope Positions - Module 14
-  module_14_params = list(
-   if (slhgt) HO = here(out_dir, paste0(prefix, "shlgt.sgrd")),
-   if (vldpt) HU = here(out_dir, paste0(prefix, "vldpt.sgrd")),
-   if (nrhgt) NH = here(out_dir, paste0(prefix, "nrhgt.sgrd")),
-   if (sthgt) SH = here(out_dir, paste0(prefix, "sthgt.sgrd")),
-   if (mdslp) MS = here(out_dir, paste0(prefix, "mdslp.sgrd"))
+  module_14_params_set = list(
+   HO = if (slhgt) here(out_dir, paste0(prefix, "shlgt.sgrd")),
+   HU = if (vldpt) here(out_dir, paste0(prefix, "vldpt.sgrd")),
+   NH = if (nrhgt) here(out_dir, paste0(prefix, "nrhgt.sgrd")),
+   SH = if (sthgt) here(out_dir, paste0(prefix, "sthgt.sgrd")),
+   MS = if (mdslp) here(out_dir, paste0(prefix, "mdslp.sgrd"))
   )
 
-  if (length(module_14_params[lengths(module_14_params) > 0]) > 0) {
+  module_14_params = module_14_params_set[lengths(module_14_params_set) > 0]
+
+  if (length(module_14_params) > 0) {
       params = append(list(DEM = elev_sgrd), module_14_params)
       rsaga.geoprocessor('ta_morphometry', 14, params, env = envir)
   }

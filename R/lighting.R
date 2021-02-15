@@ -66,12 +66,14 @@ elev_to_lighting = function(elev_sgrd, out_dir,
   }
 
   # Sky View Factor - Module 3
-  module_3_params = list(
-    if (svfct) SVF = here(out_dir, paste0(prefix, "svfct", ".sgrd")),
-    if (visky) VISIBLE = here(out_dir, paste0(prefix, "visky", ".sgrd"))
+  module_3_params_set = list(
+    SVF = if (svfct) here(out_dir, paste0(prefix, "svfct", ".sgrd")),
+    VISIBLE = if (visky) here(out_dir, paste0(prefix, "visky", ".sgrd"))
   )
 
-  if (length(module_3_params[lengths(module_3_params) > 0]) > 0) {
+  module_3_params = module_3_params_set[lengths(module_3_params_set) > 0]
+
+  if (length(module_3_params) > 0) {
     params = append(
       list(DEM = elev_sgrd, METHOD = 1, DLEVEL = 3),
       module_3_params
@@ -80,12 +82,14 @@ elev_to_lighting = function(elev_sgrd, out_dir,
   }
 
   # Topographic Openness - Module 5
-  module_5_params = list(
-    if (posop) POS = here(out_dir, paste0(prefix, "posop", ".sgrd")),
-    if (negop) NEG = here(out_dir, paste0(prefix, "negop", ".sgrd"))
+  module_5_params_set = list(
+    POS = if (posop) here(out_dir, paste0(prefix, "posop", ".sgrd")),
+    NEG = if (negop) here(out_dir, paste0(prefix, "negop", ".sgrd"))
   )
 
-  if (length(module_5_params[lengths(module_5_params) > 0]) > 0) {
+  module_5_params = module_5_params_set[lengths(module_5_params_set) > 0]
+
+  if (length(module_5_params) > 0) {
     params = append(
       list(DEM = elev_sgrd, METHOD = 0, DLEVEL = 3),
       module_5_params
