@@ -4,17 +4,24 @@
 \alias{elev_to_sgrd}
 \title{Convert elevation data into SAGA format}
 \usage{
-elev_to_sgrd(elev_filename, out_filename = NA, crs_elev = NA, overwrite = TRUE)
+elev_to_sgrd(elev_filename, out_filename = NA, overwrite = TRUE)
 }
 \arguments{
 \item{elev_filename}{filename in disk of the elevation raster data}
 
-\item{out_filename}{output filename, defaults to \code{[elev_filename].sgrd}}
+\item{out_filename}{output filename, defaults to
+\code{[elev_filename].sgrd}}
 
-\item{crs_elev}{if elevation raster has no CRS, specify which to use, in proj format}
-
-\item{overwrite}{boolean, default to TRUE, should the output file be overwritten?}
+\item{overwrite}{boolean, default to TRUE, should the output file be
+overwritten?}
 }
 \description{
 Convert elevation data into SAGA format
+}
+\details{
+Beware, this function will convert a TIF file into SAGA format,
+but for some reason, the output file loses its CRS and is not
+recognized properly by GDAL drivers. It will still work for
+calculating derivatives but the file should not be used directly
+for other purposes. Always refer to the original elevation file.
 }

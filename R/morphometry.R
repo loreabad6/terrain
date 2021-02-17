@@ -184,7 +184,7 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', envir, ...,
   }
 
   # Mass Balance Index - Module 10
-  if (ddgrd) {
+  if (mbidx) {
     rsaga.geoprocessor(
       'ta_morphometry', 10,
       list(
