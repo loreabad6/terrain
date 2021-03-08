@@ -12,7 +12,9 @@ elev_to_channel(
   envir,
   ...,
   chnet = TRUE,
-  vdcnw = FALSE
+  vdcnw = FALSE,
+  init_value = 1e+06,
+  chnet_shp = F
 )
 }
 \arguments{
@@ -39,11 +41,16 @@ Boolean, defaults to \code{TRUE}}
 \item{vdcnw}{Vertical Distance to Channel Network:
 Altitude above the channel network.
 Boolean, defaults to \code{FALSE}}
+
+\item{init_value}{Initiation flow accumulation value for
+channel network computation. Defaults to 1000000}
+
+\item{chnet_shp}{Calculate channel network in vector format}
 }
 \description{
 The main goal of this function is to calculate the
 Vertical Distance to the Channel Network \code{vdcnw}
 parameter, so it will calculate first \code{chnet}.
-However, it can be used to only calcualte the
+However, it can be used to only calculate the
 Channel Network as well.
 }

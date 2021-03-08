@@ -73,7 +73,8 @@ terrain_to_tif = function(out_dir_to_translate, out_crs = NULL) {
     infiles = files_for_translation,
     outdir = out_dir_to_translate,
     outsuffix = ".tif",
-    a_srs = if(!is.null(out_crs)) out_crs
+    a_srs = if(!is.null(out_crs)) out_crs,
+    verbose = TRUE
   )
 
   do.call(batch_gdal_translate, params[lengths(params) > 0])

@@ -3,7 +3,7 @@
 #' @description The main goal of this function is to calculate the
 #'              Vertical Distance to the Channel Network \code{vdcnw}
 #'              parameter, so it will calculate first \code{chnet}.
-#'              However, it can be used to only calcualte the
+#'              However, it can be used to only calculate the
 #'              Channel Network as well.
 #'
 #' @param elev_sgrd input, elevation raster data in SAGA format,
@@ -22,22 +22,31 @@
 #' @param vdcnw Vertical Distance to Channel Network:
 #'              Altitude above the channel network.
 #'              Boolean, defaults to \code{FALSE}
+#' @param init_value Initiation flow accumulation value for
+#'                   channel network computation. Defaults to 1000000
+#' @param chnet_shp Calculate channel network in vector format
 #'
 #' @importFrom here here
 #' @importFrom RSAGA rsaga.geoprocessor
 #' @export
 elev_to_channel = function(elev_sgrd, flow_sgrd,
                            out_dir, prefix = '', envir, ...,
-                           chnet = TRUE, vdcnw = FALSE) {
+                           chnet = TRUE, vdcnw = FALSE,
+                           init_value = 1000000, chnet_shp = F) {
   if (!chnet) stop("chnet is a fix output from this function", call. = FALSE)
+  module_0_params_set = list(
+    ELEVATION = elev_sgrd,
+    INIT_GRID = flow_sgrd,
+    CHNLNTWRK = here(out_dir, paste0(prefix, "chnet", ".sgrd")),
+    INIT_VALUE = init_value,
+    SHAPES = if (chnet_shp) here(out_dir, paste0(prefix, "chnet"))
+  )
+
+  module_0_params = module_0_params_set[lengths(module_0_params_set) > 0]
+
   rsaga.geoprocessor(
     'ta_channels', 0,
-    list(
-      ELEVATION = elev_sgrd,
-      INIT_GRID = flow_sgrd,
-      CHNLNTWRK = here(out_dir, paste0(prefix, "chnet", ".sgrd")),
-      INIT_VALUE = 1000000
-    ),
+    module_0_params,
     env = envir
   )
 
