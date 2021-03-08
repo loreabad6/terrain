@@ -32,7 +32,7 @@
 elev_to_channel = function(elev_sgrd, flow_sgrd,
                            out_dir, prefix = '', envir, ...,
                            chnet = TRUE, vdcnw = FALSE,
-                           init_value = 1000000, chnet_shp = F) {
+                           init_value = 1000000, chnet_shp = FALSE) {
   if (!chnet) stop("chnet is a fix output from this function", call. = FALSE)
   module_0_params_set = list(
     ELEVATION = elev_sgrd,

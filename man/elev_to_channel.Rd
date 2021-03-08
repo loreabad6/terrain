@@ -14,7 +14,7 @@ elev_to_channel(
   chnet = TRUE,
   vdcnw = FALSE,
   init_value = 1e+06,
-  chnet_shp = F
+  chnet_shp = FALSE
 )
 }
 \arguments{
