@@ -24,7 +24,7 @@ elev_to_sgrd = function(elev_filename, out_filename = NA,
   if (is.na(out_filename)) out_filename =  sub('.[^.]*$', '', elev_filename)
   # Write raster to disk
   writeRaster(
-    elev, out_filename, format = 'SAGA',
+    elev, out_filename, filetype = 'SAGA',
     overwrite = overwrite, NAflag = 0
   )
 }
