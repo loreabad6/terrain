@@ -21,10 +21,12 @@
 #'                file does not have a CRS, then pass the corresponding CRS
 #'                information as WKT, PROJ.4 or EPSG values.
 #'
-#' @importFrom gdalUtils batch_gdal_translate
+#' @importFrom gdalUtils gdal_translate remove_file_extension
 #' @importFrom here here
+#' @importFrom rlang is_empty
 #' @importFrom strex str_after_first
 #' @importFrom stringr str_replace
+#' @importFrom foreach foreach %dopar%
 #'
 #' @export
 terrain_to_tif = function(out_dir_to_translate, out_crs = NULL) {
@@ -69,13 +71,42 @@ terrain_to_tif = function(out_dir_to_translate, out_crs = NULL) {
 
   files_for_translation = here(out_dir_to_translate, files_to_translate)
 
-  params = list(
-    infiles = files_for_translation,
-    outdir = out_dir_to_translate,
-    outsuffix = ".tif",
-    a_srs = if(!is.null(out_crs)) out_crs,
-    verbose = TRUE
-  )
+  ## From gdalUtils (deprecated package)
+  ## https://github.com/gearslaboratory/gdalUtils/blame/master/R/batch_gdal_translate.R
+  ## (c) Jonathan Asher Greenberg (\email{gdalUtils@@estarcion.net}), 2020
 
-  do.call(batch_gdal_translate, params[lengths(params) > 0])
+  batch_translate = function(infiles, outdir, outsuffix = "_conv.tif",
+                             verbose=FALSE, ...) {
+    # These are just to avoid errors in CRAN checks.
+    infile = NULL
+    outfile = NULL
+
+    # Generate output names.
+    outfiles = sapply(infiles,function(x,outsuffix,outdir=outdir)
+    {
+      outfilename = paste(remove_file_extension(basename(x)),outsuffix,sep="")
+      outfilepath = normalizePath(file.path(outdir,outfilename),mustWork=FALSE)
+    },outsuffix=outsuffix,outdir=outdir)
+
+    outputs = foreach(infile=infiles,outfile=outfiles,.packages="gdalUtils") %dopar%
+      {
+        gdal_translate(src_dataset=infile,dst_dataset=outfile,verbose=verbose,...)
+      }
+  }
+  if (!is_empty(files_for_translation)) {
+    ## Setting parameters
+    params = list(
+      infiles = files_for_translation,
+      outdir = out_dir_to_translate,
+      outsuffix = ".tif",
+      a_srs = if(!is.null(out_crs)) out_crs,
+      verbose = TRUE
+    )
+
+    do.call(batch_translate, params[lengths(params) > 0])
+    return(NA)
+  } else {
+    message("All files have been translated.")
+    return(NA)
+  }
 }

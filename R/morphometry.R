@@ -112,6 +112,7 @@
 #'              Network' tool.
 #'              Boolean, defaults to \code{FALSE}
 #' @param units character, units for slope and aspect output
+#' @param extra_texture_scale integer, defines the scale for texture computation
 #'
 #' @references Olaya, V. (2009). Basic land-surface parameters.
 #'             In Developments in Soil Science (Vol. 33, Issue C).
@@ -128,7 +129,8 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', envir, ...,
                                ddgrd = FALSE, mbidx = FALSE, mdslp = FALSE,
                                nrhgt = FALSE, slhgt = FALSE, slope = FALSE,
                                sthgt = FALSE, textu = FALSE, tpidx = FALSE,
-                               tridx = FALSE, vldpt = FALSE, units = "degrees") {
+                               tridx = FALSE, vldpt = FALSE, units = "degrees",
+                               extra_texture_scale = 10) {
 
   # Slope, aspect, curvature - Module 0
   module_0_params_set = list(
@@ -243,7 +245,8 @@ elev_to_morphometry = function(elev_sgrd, out_dir, prefix = '', envir, ...,
       'ta_morphometry', 20,
       list(
         DEM = elev_sgrd,
-        TEXTURE = here(out_dir, paste0(prefix, "textu.sgrd"))
+        TEXTURE = here(out_dir, paste0(prefix, "textu.sgrd")),
+        SCALE = extra_texture_scale
       ),
       env = envir
     )

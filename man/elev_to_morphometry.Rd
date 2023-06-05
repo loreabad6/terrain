@@ -30,7 +30,8 @@ elev_to_morphometry(
   tpidx = FALSE,
   tridx = FALSE,
   vldpt = FALSE,
-  units = "degrees"
+  units = "degrees",
+  extra_texture_scale = 10
 )
 }
 \arguments{
@@ -171,6 +172,8 @@ Network' tool.
 Boolean, defaults to \code{FALSE}}
 
 \item{units}{character, units for slope and aspect output}
+
+\item{extra_texture_scale}{integer, defines the scale for texture computation}
 }
 \description{
 Calculate derivatives from the Morphometry module
